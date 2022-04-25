@@ -18,7 +18,7 @@ describe("Engineer", () => {
       it("it should return a string of user input when called and output a link", () => {
           const obj = new Engineer();
 
-          expect(obj.getGitHub()).toEqual(`GitHub Profile: http://github.com/${this.username}/`);
+          expect(obj.getGitHub()).toEqual(`GitHub: <a href="http://github.com/${this.username}/">${this.username}</a>`);
           });
       });
 });

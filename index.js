@@ -1,10 +1,11 @@
+// importing external modules
 const Employee = require('./lib/employee');
 const Engineer = require('./lib/engineer');
 const Manager = require('./lib/manager.js')
 const Intern = require('./lib/intern')
 const fs = require('fs')
 const inquirer = require('inquirer')
-
+//asks the user for information about team manager and creates a class of Manager.
 const createMgmt = () => {
 inquirer.prompt([
     {
@@ -28,6 +29,7 @@ inquirer.prompt([
         message: "Team Manager office number:"
     },
 ])
+// not only does it create a new class of Manager, it also immediately write a new card to the HTML file by calling the writeCards function and continues on to the menu.
 .then((newMgmt) => {
     const { name, id, email, officeNumber } = newMgmt
     const newManager = new Manager(name, id, email, officeNumber)
@@ -35,6 +37,7 @@ inquirer.prompt([
     menu();
 })
 }
+// the menu asks the user if they would like to add another employee or finish team and depending on feedback the .then statement routes the input to another set of inquirer prompts or finishes the team. 
 const menu = () => {
     inquirer.prompt([
     {
@@ -49,7 +52,7 @@ const menu = () => {
         createEmployee == "Engineer" ? createEngineer() : createEmployee == "Intern" ? createIntern() : createEmployee == "Finish Team" ? loading() : menu();
     })
 }
-
+// createEngineer asks a set of prompts and writes a new card as when called, but also asks the user for the github username of the engineer being created
 const createEngineer = () => {
     inquirer.prompt([
     {
@@ -80,7 +83,7 @@ const createEngineer = () => {
     menu();
 }) 
 }
-
+// createIntern asks a series of prompts including the school the intern is currently enrolled and then immediately creates a card by calling writeCards
 const createIntern = () => {
     inquirer.prompt([
         {
@@ -111,15 +114,14 @@ const createIntern = () => {
         menu();
     }) 
 }
-
-
+// loading is part fun part closure. it pretends like its creating an HTML file and applying CSS, by setTimeout at different intervals until it calls writeClose
 const loading = () => { 
     console.log("Setting up team:")
     setTimeout(() => console.log("Creating HTML and Applying CSS"), 2000)
     setTimeout(() => console.log("One moment..."), 4000)
     setTimeout(() => writeClose(), 7000)
 }
-
+// writeClose write the bottom of the HTML file being created. right after the cards that are being created dynamically
 const writeClose = () => {
   fs.appendFile("./dist/index.html", 
           `</div>
@@ -132,37 +134,39 @@ const writeClose = () => {
               </nav>
             </div>
           </section>
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     </body>
     </html>`, 
 (err) => err ? console.error(err) : console.log('Success!'));
 }
-
+// writeCards dynamically generates employee cards when called. it is passed the newly created member and uses class methods to access the member properties to appropriately write icons and card content that correspond to that member's role, name, id, email, and some.  
 const writeCards = (member) => {
   fs.appendFile("./dist/index.html", 
-`<div class="card column is-one-third">
+`<div class="card column is-one-fourth">
 <div class="card-image">
-<figure class="image is-3by2">
-  <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+<figure class="image is-2by1">
+  <img src="../img/thetechco.PNG" alt="company logo">
 </figure>
 </div>
 <div class="card-content">
 <div class="media">
   <div class="media-content">
     <h1 id="name" class="is-4">${member.getName()}</h1>
-    <h2 id="role" class="is-4">${member.getRole()}</h2>
-    <p id="id" class="is-6">EID: ${member.getId()}</p>
+    <h2 id="role" class="is-4"><ion-icon name="${member.getRole() === "Manager" ? "people-circle-outline" : member.getRole() === "Engineer" ? "leaf-outline" : member.getRole() === "Intern" ? "school-outline" : console.log("oops")}"></ion-icon> ${member.getRole()}</h2>
+    <p id="id" class="is-6"><ion-icon name="id-card-outline"></ion-icon> (EID) : ${member.getId()}</p>
   </div>
 </div>
 
 <div class="content">
-  ${member.getRole() === "Manager" ? `Office #: ${member.officeNumber}` : member.getRole() === "Engineer" ? `${member.getGitHub()}` : member.getRole() === "Intern" ? `${member.getSchool()}`: console.log("oops")}
-  <a>${member.getEmail()}</a>.
+  <p>${member.getRole() === "Manager" ? `Office #: ${member.officeNumber}` : member.getRole() === "Engineer" ? `${member.getGitHub()}` : member.getRole() === "Intern" ? `${member.getSchool()}`: console.log("oops")}</p>
+  <a href="mailto:${member.getEmail()}">${member.getEmail()}</a>
 </div>
 </div>
 </div>`, 
     (err) => err ? console.error(err) : console.log('Success!'));
 } 
-
+//this writes the <head>, the beginning of the <body>, and the container for the cards, but stops there. 
 const writeOpen = () => {
 fs.appendFile("./dist/index.html", 
 `<!DOCTYPE html>
@@ -189,13 +193,13 @@ fs.appendFile("./dist/index.html",
         </div>
 
         <div class="hero-body">
-          <div class="container columns has-text-centered">`, 
+          <div class="container columns is-multiline">`, 
             (err) => err ? console.error(err) : " ");
 }
-
+// initializes application and writes the beginning of our html document down to where the cards would start. 
 const init = () => {
   createMgmt();
   writeOpen();
 }
-
+// ¿<*÷~innit~÷*>?
 init();
