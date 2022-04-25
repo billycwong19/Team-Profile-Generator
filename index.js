@@ -5,8 +5,6 @@ const Intern = require('./lib/intern')
 const fs = require('fs')
 const inquirer = require('inquirer')
 
-let members = []
-
 const createMgmt = () => {
 inquirer.prompt([
     {
@@ -116,34 +114,32 @@ const createIntern = () => {
 
 
 const loading = () => { 
-    console.log("Setting up team:", members)
-    setTimeout(() => console.log("Creating HTML and Applying CSS"), 3000)
-    setTimeout(() => console.log("One moment..."), 6000)
-    setTimeout(() => writeClose(), 10000)
+    console.log("Setting up team:")
+    setTimeout(() => console.log("Creating HTML and Applying CSS"), 2000)
+    setTimeout(() => console.log("One moment..."), 4000)
+    setTimeout(() => writeClose(), 7000)
 }
 
 const writeClose = () => {
   fs.appendFile("./dist/index.html", 
           `</div>
-        </div>
-      
-        <!-- Hero footer: will stick at the bottom -->
-        <div class="hero-foot">
-          <nav class="tabs">
-            <div class="container">
-              WHAT A GREAT TEAM!
+          </div>
+            <div class="hero-foot">
+              <nav class="tabs">
+                <div class="container">
+                  WHAT A GREAT TEAM!
+                </div>
+              </nav>
             </div>
-          </nav>
-        </div>
-      </section>
-</body>
-</html>`, 
+          </section>
+    </body>
+    </html>`, 
 (err) => err ? console.error(err) : console.log('Success!'));
 }
 
 const writeCards = (member) => {
   fs.appendFile("./dist/index.html", 
-  `<div class="card column is-one-third">
+`<div class="card column is-one-third">
 <div class="card-image">
 <figure class="image is-3by2">
   <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
@@ -193,8 +189,8 @@ fs.appendFile("./dist/index.html",
         </div>
 
         <div class="hero-body">
-          <div class="container has-text-centered">`, 
-            (err) => err ? console.error(err) : console.log('Success!'));
+          <div class="container columns has-text-centered">`, 
+            (err) => err ? console.error(err) : " ");
 }
 
 const init = () => {
