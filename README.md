@@ -1,4 +1,6 @@
 <div id="top"></div>
+<!-- readme has snippets from https://github.com/othneildrew/Best-README-Template -->
+<!-- badges are by the wonderful https://michaelcurrin.github.io/badge-generator/#/ -->
 
 # Team Profile Generator
 <a id="top" href="#license"><img src="https://img.shields.io/badge/License-MIT-2ea44f" alt="License - MIT"></a>
@@ -36,7 +38,7 @@
       <ul>
         <li><a href="#license">License</a></li>
         <li><a href="#contributing">Contributing</a></li>
-        <li><a href="#questions">Questions?</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </li>
   </ol>
@@ -71,7 +73,9 @@ If you have a suggestion please open an issue then fork the repo and create a pu
 
 ## Contact
 
-If you have any questions about this application please feel free to email me here: billycwong19@gmail.com
+Application coded by William Wong.
+<br>
+Email: billycwong19@gmail.com
 
 Project Link: [https://github.com/billycwong19/Team-Profile-Generator](https://github.com/billycwong19/Team-Profile-Generator)
 
