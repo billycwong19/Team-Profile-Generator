@@ -18,12 +18,12 @@
   },
   "homepage": "https://github.com/billycwong19/Team-Profile-Generator#readme",
   "dependencies": {
+    "bulma": "^0.9.3",
     "inquirer": "^8.2.2",
     "jest": "^27.5.1"
   },
   "directories": {
     "lib": "lib",
     "test": "tests"
-  },
-  "devDependencies": {}
+  }
 }

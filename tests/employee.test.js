@@ -18,4 +18,32 @@ describe("Employee", () => {
       expect("email" in obj).toEqual(true);
     });
   });
+  describe("getRole", () => {
+    it("it should return the string 'Employee' when called", () => {
+        const obj = new Employee();
+
+        expect(obj.getRole()).toEqual('Employee');
+        });
+    });
+  describe("getName", () => {
+    it("it should return a string of user input when called", () => {
+        const obj = new Employee();
+
+        expect(obj.getName()).toEqual(this.name);
+        });
+    });
+    describe("getId", () => {
+      it("it should return a string of user input when called", () => {
+          const obj = new Employee();
+  
+          expect(obj.getId()).toEqual(this.id);
+          });
+      });
+      describe("getEmail", () => {
+        it("it should return a string of user input when called", () => {
+            const obj = new Employee();
+    
+            expect(obj.getEmail()).toEqual(this.email);
+            });
+        });
 });

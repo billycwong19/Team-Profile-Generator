@@ -7,4 +7,11 @@ describe("Manager", () => {
         expect("officeNumber" in obj).toEqual(true);
         });
     });
+    describe("getRole", () => {
+      it("it should return the string 'Manager' when called", () => {
+          const obj = new Manager();
+
+          expect(obj.getRole()).toEqual('Manager');
+          });
+      });
 });
